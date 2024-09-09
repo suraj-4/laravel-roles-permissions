@@ -9,18 +9,17 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
-class userController extends Controller implements HasMiddleware
+class userController extends Controller 
 {
 
     public static function middleware(): array
     {
         return [
-            new Middleware ('permission:view users', only :['showUsers']), 
-            new Middleware ('permission:edit users', only :['editUsers']), 
-            // new Middleware ('permission : create roles', only :['create']), 
-            // new Middleware ('permission : delete roles', only :['delete']), 
+            ['middleware' => 'permission:view users', 'only' => ['showUsers']],
+            ['middleware' => 'permission:edit users', 'only' => ['editUsers']],
         ];
     }
+
 
     /**
      * Display a listing of the resource.

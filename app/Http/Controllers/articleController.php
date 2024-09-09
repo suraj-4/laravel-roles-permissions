@@ -8,17 +8,16 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
-
-
-class articleController extends Controller implements HasMiddleware
+class articleController extends Controller 
 {
+
     public static function middleware(): array
     {
         return [
-            new Middleware ('permission:view articles', only :['showArticle']), 
-            new Middleware ('permission:edit articles', only :['editArticle']), 
-            new Middleware ('permission:create articles', only :['createArticle']), 
-            new Middleware ('permission:delete articles', only :['destroyArticle']), 
+            ['middleware' => 'permission:view articles', 'only' => ['showArticle']],
+            ['middleware' => 'permission:edit articles', 'only' => ['editArticle']],
+            ['middleware' => 'permission:create articles', 'only' => ['createArticle']],
+            ['middleware' => 'permission:delete articles', 'only' => ['destroyArticle']],
         ];
     }
 

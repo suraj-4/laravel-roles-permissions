@@ -10,18 +10,19 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
 
-class roleController extends Controller implements HasMiddleware
+class roleController extends Controller 
 {
 
     public static function middleware(): array
     {
         return [
-            new Middleware ('permission:view roles', only :['showRoles']), 
-            new Middleware ('permission:edit roles', only :['editRole']), 
-            new Middleware ('permission:create roles', only :['createRole']), 
-            new Middleware ('permission:delete roles', only :['destroyRoles']), 
+            ['middleware' => 'permission:view roles', 'only' => ['showRoles']],
+            ['middleware' => 'permission:edit roles', 'only' => ['editRole']],
+            ['middleware' => 'permission:create roles', 'only' => ['createRole']],
+            ['middleware' => 'permission:delete roles', 'only' => ['destroyRoles']],
         ];
     }
+    
 
     //This method will show role page
     public function showRoles(){

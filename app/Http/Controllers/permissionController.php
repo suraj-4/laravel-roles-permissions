@@ -8,20 +8,18 @@ use Spatie\Permission\Models\Permission;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
-
-class permissionController extends Controller implements HasMiddleware
+class permissionController extends Controller 
 {
 
     public static function middleware(): array
     {
         return [
-            new Middleware ('permission:view permissions', only :['showPermissionPage']), 
-            new Middleware ('permission:edit permissions', only :['permissionEdit']), 
-            new Middleware ('permission:create permissions', only :['permissionCreate']), 
-            new Middleware ('permission:delete permissions', only :['permissionDestroy']), 
+            ['middleware' => 'permission:view permissions', 'only' => ['showPermissionPage']],
+            ['middleware' => 'permission:edit permissions', 'only' => ['permissionEdit']],
+            ['middleware' => 'permission:create permissions', 'only' => ['permissionCreate']],
+            ['middleware' => 'permission:delete permissions', 'only' => ['permissionDestroy']],
         ];
     }
-
 
     //This method will show permission page
     public function showPermissionPage(){
